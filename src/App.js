@@ -3,9 +3,26 @@ import {Switch, Route} from 'react-router-dom'
 import './App.css';
 import AptIndex from './components/AptIndex'
 import AptDetail from './components/AptDetail'
+import { getApts } from './api'
 
 
 class App extends Component {
+  constructor(props){
+        super(props)
+        this.state = {
+            apts: []
+        }
+    }
+
+    componentWillMount() {
+        getApts()
+        .then(APIapts => {
+            this.setState({
+                apts: APIapts
+            })
+        })
+      }
+
   render() {
     return (
       <Switch>
@@ -19,5 +36,4 @@ class App extends Component {
   }
 }
 
-
-export default App;
+export default App
