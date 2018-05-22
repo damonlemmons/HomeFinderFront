@@ -27,15 +27,14 @@ componentWillMount(){
 
       <div>
         <Link to='/'>Home</Link>
-        <h3>{apt.name}</h3>
-        <h3>{apt.address1}</h3>
-        <h3>{apt.address2}</h3>
-        <h3>{apt.city}</h3>
-        <h3>{apt.state}</h3>
-        <h3>{apt.manager}</h3>
-        <h3>{apt.phone}</h3>
-        <h3>{apt.contacthours}</h3>
-
+        <h3>Neighborhood: {apt.name}</h3>
+        <h3>Address 1: {apt.address1}</h3>
+        <h3>Address 2: {apt.address2}</h3>
+        <h3>City: {apt.city}</h3>
+        <h3>State: {apt.state}</h3>
+        <h3>Manager: {apt.manager}</h3>
+        <h3>Phone: {apt.phone}</h3>
+        <h3>Contact Hours: {apt.contacthours}</h3>
       </div>
     );
   }
