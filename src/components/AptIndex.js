@@ -11,7 +11,7 @@ class AptIndex extends Component {
       return(
         <li key={apt.id}>
           <Link to={`/Apts/${apt.id}`} >
-            {apt.name}
+            <h2>{apt.name}</h2>
           </Link>
         </li>
       )
