@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Apts from '../store/Apts'
+import withAuth from './withAuth'
 import {Link} from 'react-router-dom'
 
 class AptDetail extends Component {
@@ -40,4 +41,4 @@ componentWillMount(){
   }
 }
 
-export default AptDetail;
+export default withAuth(AptDetail);
