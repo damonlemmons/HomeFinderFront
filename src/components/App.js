@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom'
-import './App.css';
-import AptIndex from './components/AptIndex'
-import AptDetail from './components/AptDetail'
-import { getApts } from './api'
-import Login from './components/Login';
+import '../css/App.css';
+import AptIndex from './AptIndex'
+import AptDetail from './AptDetail'
+import { getApts } from '../api'
+import Login from './Login';
+
 
 
 class App extends Component {
