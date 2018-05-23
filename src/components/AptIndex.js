@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
 import Apts from '../store/Apts'
 import {Link} from 'react-router-dom'
+import withAuth from './withAuth'
+import AuthService from '../services/AuthService'
+
+
+const Auth = new AuthService()
+
 
 class AptIndex extends Component {
+
+  handleLogout(){ // <- Remove local storage, and redirect the user
+      Auth.logout()
+      this.props.history.replace('/login');
+    }
+
   componentWillMount(){
+    console.log('index props', this.props.history);
     this.setState({apts: Apts})
   }
   render() {
@@ -17,11 +30,14 @@ class AptIndex extends Component {
       )
     })
     return (
-      <ul>
-        {list}
-      </ul>
+      [
+        <ul>
+          {list}
+        </ul>,
+        <button type="button" className="form-submit" onClick={this.handleLogout.bind(this)}>Logout</button>
+     ]
     );
   }
 }
 
-export default AptIndex;
+export default withAuth(AptIndex)

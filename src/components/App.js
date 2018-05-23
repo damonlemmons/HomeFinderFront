@@ -5,8 +5,10 @@ import AptIndex from './AptIndex'
 import AptDetail from './AptDetail'
 import { getApts } from '../api'
 import Login from './Login';
+import AuthService from '../services/AuthService'
 
 
+const Auth = new AuthService()
 
 class App extends Component {
   constructor(props){
@@ -16,7 +18,10 @@ class App extends Component {
         }
     }
 
+    
+
     componentWillMount() {
+      console.log('app props', this.props);
         getApts()
         .then(APIapts => {
             this.setState({
@@ -27,14 +32,17 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
-          <div>
-              <div className="App"> <h1>Welcome to Home Finder</h1></div>
+        <div>
+        <div className="App"> <h1>Home Finder</h1></div>
+        <Switch>
               <Route exact path="/" component={AptIndex} />
               <Route path='/Apts/:id' component={AptDetail} />
               <Route exact path="/login" component={Login}/>
+          </Switch>
+              {/*<button type="button" className="form-submit" onClick={this.handleLogout.bind(this)}>Logout</button> */}
+
           </div>
-      </Switch>
+
     );
   }
 }
