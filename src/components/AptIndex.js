@@ -20,7 +20,8 @@ class AptIndex extends Component {
     this.setState({apts: Apts})
   }
   render() {
-    let list = this.state.apts.map(function(apt){
+    console.log(this.props);``
+    let list = this.props.values.apts.map(function(apt){
       return(
         <li key={apt.id}>
           <Link to={`/Apts/${apt.id}`} >
@@ -40,4 +41,4 @@ class AptIndex extends Component {
   }
 }
 
-export default withAuth(AptIndex)
+export default withAuth (AptIndex)

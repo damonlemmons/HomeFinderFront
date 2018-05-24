@@ -1,6 +1,9 @@
 
+import AuthService from '../services/AuthService'
+
 // the address of our rails backend, saved as a constant value, because we never want to accidently change it
 const BASE = 'http://localhost:3000'
+const Auth = new AuthService()
 
 let getApts = function() {
     // the function name getCats is intended to remind you of the restful rails route --> GET '/cats'.
@@ -12,8 +15,14 @@ let getApts = function() {
             return json
         })
 }
+let createApt = function(apt) {
+    return Auth.fetch(BASE + '/apts', {
+        body: JSON.stringify(apt),  // <- we need to stringify the json for fetch
+        method: "POST"  // <- Here's our verb, so the correct endpoint is invoked on the server
+    })
+}
 
 
 export  {
-    getApts
+    getApts, createApt
 }

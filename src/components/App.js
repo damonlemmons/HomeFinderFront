@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import '../css/App.css';
 import AptIndex from './AptIndex'
 import AptDetail from './AptDetail'
+import NewApts from './NewApts'
 import { getApts } from '../api'
 import Login from './Login';
 import AuthService from '../services/AuthService'
+import { createApt } from '../api'
+
 
 
 const Auth = new AuthService()
@@ -14,11 +17,11 @@ class App extends Component {
   constructor(props){
         super(props)
         this.state = {
-            apts: []
+            apts: [],
+            newAptSuccess: false
         }
     }
 
-    
 
     componentWillMount() {
       console.log('app props', this.props);
@@ -28,23 +31,36 @@ class App extends Component {
                 apts: APIapts
             })
         })
-      }
+    }
+
+    handleNewApt(newAptInfo) {
+      createApt(newAptInfo)
+      .then(successApt => {
+          console.log("SUCCESS! New apt: ", successApt);
+          return getApts()
+      })
+      .then(APIapts => {
+        this.setState({
+          apts: APIapts,
+          newAptSuccess: true
+      })
+    })
+  }
 
   render() {
     return (
         <div>
         <div className="App"> <h1>Home Finder</h1></div>
         <Switch>
-              <Route exact path="/" component={AptIndex} />
               <Route path='/Apts/:id' component={AptDetail} />
               <Route exact path="/login" component={Login}/>
-          </Switch>
-              {/*<button type="button" className="form-submit" onClick={this.handleLogout.bind(this)}>Logout</button> */}
+                <Route exact path="/" render={ (props) => <AptIndex apts={this.state.apts}/> } />
+                <Route path="/NewApts" render={ (props) => <NewApts success={this.state.newAptSuccess} handleApt={this.handleNewApt.bind(this)} /> } />
 
+          </Switch>
           </div>
 
     );
   }
 }
-
 export default App
