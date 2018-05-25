@@ -56,7 +56,6 @@ class App extends Component {
               <Route exact path="/login" component={Login}/>
                 <Route exact path="/" render={ (props) => <AptIndex apts={this.state.apts}/> } />
                 <Route path="/NewApts" render={ (props) => <NewApts success={this.state.newAptSuccess} handleApt={this.handleNewApt.bind(this)} /> } />
-
           </Switch>
           </div>
 

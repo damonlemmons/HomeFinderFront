@@ -15,7 +15,7 @@ export default function withAuth(WrappedComponent) {
       console.log(this.props);
       if(!Auth.loggedIn()) {
         console.log("not logged in!");
-        this.props.history.replace('/login')
+         //this.props.history.replace('/login')
       }
       else {
         try {
@@ -37,9 +37,11 @@ export default function withAuth(WrappedComponent) {
           <WrappedComponent values={this.props} history={this.props.history} userId={this.state.userId} />
         )
       }
+
       else {
         return null
       }
     }
   }
 }
+//

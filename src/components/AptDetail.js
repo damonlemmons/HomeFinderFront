@@ -11,7 +11,7 @@ class AptDetail extends Component {
   constructor(props){
     super(props)
     this.state = {
-      apt: Apts
+      apts: Apts
     }
   }
 
